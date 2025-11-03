@@ -2,3 +2,4 @@
 .venv_linux/
 .venv_windows/
 .vscode/
+register_account.ipynb

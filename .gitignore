@@ -2,4 +2,5 @@
 .venv_linux/
 .venv_windows/
 .vscode/
+.ipynb_checkpoints/
 register_account.ipynb

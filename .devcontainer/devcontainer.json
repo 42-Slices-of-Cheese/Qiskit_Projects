@@ -1,6 +1,12 @@
 {
   "name": "Quantum Dev Environment",
-  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "image": "mcr.microsoft.com/devcontainers/python:3.14",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.12",
+      "installTools": false
+    }
+  },
   "customizations": {
     "vscode": {
       "extensions": [
@@ -8,15 +14,15 @@
         "ms-toolsai.jupyter"
       ],
       "settings": {
-        // Tells VS Code to automatically look for the virtual environment
-        "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+        // Default to the `qiskit` venv inside the hidden `.venvs` folder
+        "python.defaultInterpreterPath": "${workspaceFolder}/.venvs/qiskit/bin/python",
         "jupyter.notebookFileRoot": "${workspaceFolder}"
       },
       "terminal.integrated.env.linux": {
-        "PATH": "${workspaceFolder}/.venv/bin:${env:PATH}"
+        "PATH": "${workspaceFolder}/.venvs/qiskit/bin:${env:PATH}"
       }
     }
   },
-  // Creates the venv and installs all packages right after the container spins up
-  "postCreateCommand": "python -m venv .venv && ./local_install.sh"
+  // Create the hidden venvs folder and any venvs after the container spins up
+  "postCreateCommand": "bash setup_venvs.sh"
 }
